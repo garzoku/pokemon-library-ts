@@ -57,8 +57,8 @@ function buildListing(pokemon) {
 
 
     function fillListing(pokemon) {
-        listingA.href = "pokemon.html"//fetch(`${pokemon.forms[0].url}`).then(response => response.json())
-        listingA.textContent = capitalizeName(pokemon.name)
+        listingA.href =
+            listingA.textContent = capitalizeName(pokemon.name)
         listingImage.src = pokemon.sprites.front_default
         listingImage.alt = capitalizeName(pokemon.name)
     }

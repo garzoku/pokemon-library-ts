@@ -1,21 +1,29 @@
 const app = document.querySelector("#app")
+const $pokemon = document.querySelector(".pokemon")
 const pokemonLibrary = document.querySelector("h1 a")
+const spinner = document.createElement("img")
 
-fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
-    .then((response) => response.json())
-    .then((response) => {
-        const pokemonList = response.results;
-        const requests = pokemonList
-            .map((pokemon) => pokemon.url)
-            .map(url => {
-                return fetch(url)
-                    .then(response => response.json())
-            })
-        return Promise.all(requests)
-    }).then(responses => {
-        responses.map(response => {
-            buildListing(response)
-        })
+
+
+
+function addPokemonImage(pokemon) {
+    console.log(pokemon)
+    const div = document.createElement("div")
+    div.innerHTML = `
+    <a href="pokemon.html?pokemon=${pokemon.name}" >
+    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
+    </a>
+    `
+    $pokemon.append(div)
+}
+
+const url = new URL(window.location)
+const queryString = new URLSearchParams(url.search)
+fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
+    .then(response => {
+        return response.json()
+    }).then(parsedResponse => {
+        addPokemonImage(parsedResponse)
     })
 
 function buildListing(pokemon) {
