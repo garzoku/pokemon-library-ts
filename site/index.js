@@ -1,26 +1,37 @@
 const app = document.querySelector("#app")
+const main = document.querySelector("main")
 const $ul = document.querySelector(".pokemon")
 const pokemonLibrary = document.querySelector("h1 a")
+const spinner = document.createElement("img")
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    displayLoadingIcon();
+});
 
 fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
     .then((response) => response.json())
     .then((response) => {
         const pokemonList = response.results;
-        const httpRequests = pokemonList
+        const requests = pokemonList
             .map((pokemon) => pokemon.url)
             .map(url => {
                 return fetch(url)
                     .then(response => response.json())
             })
-        return Promise.all(httpRequests)
+        return Promise.all(requests)
     }).then(responses => {
         responses.map(response => {
             buildListing(response)
         })
     })
 
-function buildListing(pokemon) {
+function displayLoadingIcon() {
+    spinner.classList.add("spinner")
+    spinner.src = "loading-icon.gif"
+    main.append(spinner)
+}
 
+function buildListing(pokemon) {
     const $li = document.createElement("li")
     // create a pokemon listing
     const listingDiv = document.createElement("div")
@@ -40,13 +51,14 @@ function buildListing(pokemon) {
     listingFigCaption.append(listingA)
     fillListing(pokemon)
 
+
     function fillListing(pokemon) {
         listingA.href = "pokemon.html"//fetch(`${pokemon.forms[0].url}`).then(response => response.json())
-        console.log(pokemon)
         listingA.textContent = capitalizeName(pokemon.name)
         listingImage.src = pokemon.sprites.front_default
         listingImage.alt = capitalizeName(pokemon.name)
     }
+    spinner.classList.add("hidden")
 }
 
 function capitalizeName(string) {
