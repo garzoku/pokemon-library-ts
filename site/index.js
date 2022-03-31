@@ -1,7 +1,6 @@
 const app = document.querySelector("#app")
 const main = document.querySelector("main")
 const $ul = document.querySelector(".pokemon")
-const pokemonLibrary = document.querySelector("h1 a")
 const spinner = document.createElement("img")
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -27,7 +26,7 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
 
 function displayLoadingIcon() {
     spinner.classList.add("spinner")
-    spinner.src = "loading-icon.gif"
+    spinner.src = "images/loading-icon.gif"
     main.append(spinner)
 }
 
@@ -42,10 +41,15 @@ function buildListing(pokemon) {
     const listingImage = document.createElement("img")
     // create figcaption
     const listingFigCaption = document.createElement("figcaption")
+    const pokeball = document.createElement("img")
+    pokeball.src = "images/pokeball.png";
+    pokeball.classList.add("pokeball")
     const listingA = document.createElement("a")
+
     $ul.append($li)
     $li.append(listingDiv)
     listingDiv.append(listingFig)
+    listingFig.append(pokeball)
     listingFig.append(listingImage)
     listingFig.append(listingFigCaption)
     listingFigCaption.append(listingA)
