@@ -129,8 +129,9 @@ h2 {
 }
 
 .abilities {
-    display: flex;
-    justify-content: space-around;
+    display: block;
+    width: fit-content;
+    margin: auto;
 }
 
 .abilities li {

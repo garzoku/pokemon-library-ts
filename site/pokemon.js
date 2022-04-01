@@ -3,11 +3,11 @@ const $pokemon = document.querySelector("#pokemon")
 const pokemonLibrary = document.querySelector("h1 a")
 const spinner = document.createElement("img")
 
-
-
+window.addEventListener('DOMContentLoaded', (event) => {
+    displayLoadingIcon();
+});
 
 function addPokemon(pokemon) {
-    console.log(pokemon)
     const div = document.createElement("div")
     div.innerHTML = `
 <div class="pokemon-details">
@@ -19,16 +19,16 @@ function addPokemon(pokemon) {
   <h2>Abilities</h2>
   <ul class="abilities">
     <li>
-      <span class="ability-name">Ability's name goes here</span>
-      <span class="ability-short-description">Ability's short description goes here</span>
+      <span class="ability-name"></span>
+      <span class="ability-short-description"></span>
     </li>
     <li>
-      <span class="ability-name">Ability's name goes here</span>
-      <span class="ability-short-description">Ability's short description goes here</span>
+      <span class="ability-name"></span>
+      <span class="ability-short-description"></span>
     </li>
     <li>
-      <span class="ability-name">Ability's name goes here</span>
-      <span class="ability-short-description">Ability's short description goes here</span>
+      <span class="ability-name"></span>
+      <span class="ability-short-description"></span>
     </li>
   </ul>
 </div >
@@ -37,15 +37,62 @@ function addPokemon(pokemon) {
 }
 
 const url = new URL(window.location)
-console.log(url)
 const queryString = new URLSearchParams(url.search)
-// console.log(queryString)
 fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
-    .then(response => {
-        return response.json()
-    }).then(parsedResponse => {
-        addPokemon(parsedResponse)
+    .then(response => response.json())
+    .then(parsedResponse => {
+        const pokemon = parsedResponse;
+        addPokemon(pokemon)
+        const abilityNames = pokemon.abilities
+            .map((ability) => ability)
+            .map(element => element.ability)
+            .map(object => object.name)
+        setAbilityNames(abilityNames)
+        const requests = pokemon.abilities
+            .map((ability) => ability)
+            .map(element => element.ability)
+            .map(object => {
+                return fetch(object.url)
+                    .then(response => response.json())
+            })
+        return Promise.all(requests)
+    }).then(response => {
+        const savedResponse = response
+        const descriptions = savedResponse.map(object => {
+            for (const array of object.effect_entries) {
+                if (array.language.name === "en")
+                    return array.short_effect
+            }
+        })
+        setAbilityDescription(descriptions)
     })
+
+
+
+
+function setAbilityNames(names) {
+    const $abilityNames = document.querySelectorAll(".ability-name")
+    for (let i = 0; i < names.length; i++) {
+        $abilityNames[i].textContent = capitalizeName(names[i])
+    }
+}
+
+function setAbilityDescription(abilitiesArray) {
+    const $lis = document.querySelectorAll("li")
+    const $abilityDescrip = document.querySelectorAll(".ability-short-description")
+    for (let i = 0; i < abilitiesArray.length; i++) {
+        $abilityDescrip[i].textContent = capitalizeName(abilitiesArray[i])
+        if (abilitiesArray.length < 3) {
+            $lis[2].remove()
+        }
+    }
+}
+
+function displayLoadingIcon() {
+    spinner.classList.add("spinner")
+    spinner.src = "images/loading-icon.gif"
+    main.append(spinner)
+}
 
 function capitalizeName(string) {
     return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
