@@ -1,14 +1,13 @@
-const app = document.querySelector("#app")
-const $pokemon = document.querySelector("#pokemon")
-const pokemonLibrary = document.querySelector("h1 a")
-const spinner = document.createElement("img")
+const main = document.querySelector('main')
+const $pokemon = document.querySelector('#pokemon')
+const spinner = document.createElement('img')
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    displayLoadingIcon();
-});
+    displayLoadingIcon()
+})
 
 function addPokemon(pokemon) {
-    const div = document.createElement("div")
+    const div = document.createElement('div')
     div.innerHTML = `
 <div class="pokemon-details">
   <figure>
@@ -38,10 +37,10 @@ function addPokemon(pokemon) {
 
 const url = new URL(window.location)
 const queryString = new URLSearchParams(url.search)
-fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
+fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get('pokemon')}`)
     .then(response => response.json())
     .then(parsedResponse => {
-        const pokemon = parsedResponse;
+        const pokemon = parsedResponse
         addPokemon(pokemon)
         const abilityNames = pokemon.abilities
             .map((ability) => ability)
@@ -60,37 +59,39 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
         const savedResponse = response
         const descriptions = savedResponse.map(object => {
             for (const array of object.effect_entries) {
-                if (array.language.name === "en")
-                    return array.short_effect
+                if (array.language.name === 'en') { return array.short_effect }
             }
         })
         setAbilityDescription(descriptions)
+        spinner.classList.add('hidden')
     })
 
-
-
-
 function setAbilityNames(names) {
-    const $abilityNames = document.querySelectorAll(".ability-name")
+    const $abilityNames = document.querySelectorAll('.ability-name')
     for (let i = 0; i < names.length; i++) {
         $abilityNames[i].textContent = capitalizeName(names[i])
     }
 }
 
 function setAbilityDescription(abilitiesArray) {
-    const $lis = document.querySelectorAll("li")
-    const $abilityDescrip = document.querySelectorAll(".ability-short-description")
+    const $lis = document.querySelectorAll('li')
+    const $abilityDescrip = document.querySelectorAll('.ability-short-description')
     for (let i = 0; i < abilitiesArray.length; i++) {
         $abilityDescrip[i].textContent = capitalizeName(abilitiesArray[i])
-        if (abilitiesArray.length < 3) {
-            $lis[2].remove()
+        if (abilitiesArray.length < $abilityDescrip.length) {
+            const difference = $abilityDescrip.length - abilitiesArray.length // 2
+            let index = $abilityDescrip.length - 1
+            for (let j = 0; j < difference; j++) {
+                $lis[index].remove()
+                index--
+            }
         }
     }
 }
 
 function displayLoadingIcon() {
-    spinner.classList.add("spinner")
-    spinner.src = "images/loading-icon.gif"
+    spinner.classList.add('spinner')
+    spinner.src = 'images/loading-icon.gif'
     main.append(spinner)
 }
 
