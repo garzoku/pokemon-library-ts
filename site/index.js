@@ -2,18 +2,18 @@ const main = document.querySelector('main')
 const $ul = document.querySelector('.pokemon')
 const spinner = document.createElement('img')
 
-window.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
   displayLoadingIcon()
 })
 
-fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
+window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
   .then((response) => response.json())
   .then((response) => {
     const pokemonList = response.results
     const requests = pokemonList
       .map((pokemon) => pokemon.url)
       .map(url => {
-        return fetch(url)
+        return window.fetch(url)
           .then(response => response.json())
       })
     return Promise.all(requests)
@@ -62,5 +62,5 @@ function buildListing (pokemon) {
 
 function capitalizeName (string) {
   return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
-        }`
+    }`
 }

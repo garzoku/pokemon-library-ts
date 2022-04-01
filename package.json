@@ -1,0 +1,25 @@
+{
+  "name": "pokemon-library",
+  "version": "1.0.0",
+  "description": "created this package after having issues with package-lock",
+  "main": "index.html",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garzoku/pokemon-library.git"
+  },
+  "keywords": [
+    "pokemon"
+  ],
+  "author": "Kurt Garzone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garzoku/pokemon-library/issues"
+  },
+  "homepage": "https://github.com/garzoku/pokemon-library#readme",
+  "devDependencies": {
+    "standard": "^16.0.4"
+  }
+}
