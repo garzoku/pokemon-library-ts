@@ -3,6 +3,7 @@
 body {
     font-family: 'Archivo', sans-serif;
     font-family: 'VT323', monospace;
+    background-image: url(images/background.JPG);
 }
 
 header {
@@ -10,31 +11,33 @@ header {
     justify-content: center;
     align-items: center;
     padding: 12px 0;
-    background-image: linear-gradient(180deg, hsl(360, 81%, 55%), hsl(360, 81%, 65%));
-    font-size: 36px;
+    background-image: linear-gradient(180deg, hsl(360, 81%, 55%), hsl(360, 81%, 68%));
+    font-size: 26px;
 }
 
 header a {
     text-decoration: none;
-    color: #ffffff;
+    color: hsl(360, 81%, 55%);
+    padding: 4px 8px;
+    background-color: #ffffff;
+    border-radius: 6px;
 }
 
-main {
+.pokemon-listings {
     display: flex;
     flex-direction: column;
-    background-image: url(images/background.JPG);
 }
 
 h2 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 10px;
     align-items: center;
     color: hsl(360, 81%, 55%);
     font-size: 34px;
 }
 
-ul {
+.pokemon {
     margin: .5em auto;
     display: flex;
     flex-wrap: wrap;
@@ -42,32 +45,32 @@ ul {
     width: 700px;
 }
 
-li {
+.pokemon li {
     margin: 12px 12px;
     text-align: center;
     border: 6px hsl(360, 81%, 52%) solid;
     border-radius: 6px;
     background-image: url("images/pokemon-background.png");
-    box-shadow: 5px -5px hsl(231, 41%, 66%);
+    box-shadow: 5px -5px grey;
 
 }
 
-img {
+.card-image {
     width: 150px;
 }
 
-figure {
+.pokemon figure {
     position: relative;
 }
 
-figcaption {
+.pokemon figcaption {
     border-top: 4px solid hsl(210, 17%, 66%);
     padding-bottom: 1em;
     background-image: linear-gradient(180deg, hsl(360, 81%, 55%), hsl(360, 81%, 65%));
     padding-top: 1em;
 }
 
-ul a {
+.pokemon a {
     text-decoration: none;
     background-color: hsl(231, 91%, 65%);
     color: #ffffff;
@@ -87,8 +90,61 @@ ul a {
     display: none;
 }
 
-.pokeball {
+.pokemon .pokeball {
     width: 24px;
     position: absolute;
     right: 0;
+}
+
+.pokemon-details img {
+    width: 200px;
+    background-image: url("images/pokemon-background.png");
+    border: 6px hsl(360, 81%, 52%) solid;
+    border-radius: 6px;
+    box-shadow: 5px -5px grey;
+    padding-bottom: .5em;
+
+}
+
+.pokemon-details figure {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.pokemon-details figcaption {
+    position: absolute;
+    bottom: 3%;
+    font-size: 30px;
+    color: hsl(360, 81%, 52%);
+}
+
+.pokemon-details h2 {
+    background-image: linear-gradient(180deg, hsl(360, 81%, 55%), hsl(360, 81%, 68%));
+    color: #ffffff;
+    font-size: 28px;
+    margin-top: 1em;
+}
+
+.abilities {
+    display: flex;
+    justify-content: space-around;
+}
+
+.abilities li {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    margin: 12px 12px;
+    text-align: center;
+    border: 6px hsl(360, 81%, 52%) solid;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 5px -5px grey;
+}
+
+.abilities li span {
+    margin: 5px 5px;
 }

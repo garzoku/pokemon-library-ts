@@ -39,6 +39,7 @@ function buildListing(pokemon) {
     const listingFig = document.createElement("figure")
     // create img
     const listingImage = document.createElement("img")
+    listingImage.classList.add("card-image")
     // create figcaption
     const listingFigCaption = document.createElement("figcaption")
     const pokeball = document.createElement("img")
@@ -57,8 +58,8 @@ function buildListing(pokemon) {
 
 
     function fillListing(pokemon) {
-        listingA.href =
-            listingA.textContent = capitalizeName(pokemon.name)
+        listingA.href = `pokemon.html?pokemon=${pokemon.name}`
+        listingA.textContent = capitalizeName(pokemon.name)
         listingImage.src = pokemon.sprites.front_default
         listingImage.alt = capitalizeName(pokemon.name)
     }
