@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   displayLoadingIcon()
 })
 
-function addPokemon(pokemon) {
+function addPokemon (pokemon) {
   const div = document.createElement('div')
   div.innerHTML = `
 <div class="pokemon-details">
@@ -68,14 +68,14 @@ window.fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get('pokemon')}`)
     spinner.classList.add('hidden')
   })
 
-function setAbilityNames(names) {
+function setAbilityNames (names) {
   const $abilityNames = document.querySelectorAll('.ability-name')
   for (let i = 0; i < names.length; i++) {
     $abilityNames[i].textContent = capitalizeName(names[i])
   }
 }
 
-function setAbilityDescription(abilitiesArray) {
+function setAbilityDescription (abilitiesArray) {
   const $lis = document.querySelectorAll('li')
   const $abilityDescrip = document.querySelectorAll('.ability-short-description')
   for (let i = 0; i < abilitiesArray.length; i++) {
@@ -91,13 +91,13 @@ function setAbilityDescription(abilitiesArray) {
   }
 }
 
-function displayLoadingIcon() {
+function displayLoadingIcon () {
   spinner.classList.add('spinner')
   spinner.src = 'images/loading-icon.gif'
   main.append(spinner)
 }
 
-function capitalizeName(string) {
+function capitalizeName (string) {
   return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
     }`
 }

@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   displayLoadingIcon()
 })
 
-function addPokemon(pokemon) {
+function addPokemon (pokemon) {
   const $li = document.createElement('li')
-  const $div = document.createElement("div")
-  $div.classList = "pokemon-listing"
+  const $div = document.createElement('div')
+  $div.classList = 'pokemon-listing'
   $div.innerHTML = `
     <figure>
       <img class="pokeball" src="images/pokeball.png" alt="small pokeball" />
@@ -39,13 +39,13 @@ window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
     })
   })
 
-function displayLoadingIcon() {
+function displayLoadingIcon () {
   spinner.classList.add('spinner')
   spinner.src = 'images/loading-icon.gif'
   main.append(spinner)
 }
 
-function capitalizeName(string) {
+function capitalizeName (string) {
   return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
     }`
 }
