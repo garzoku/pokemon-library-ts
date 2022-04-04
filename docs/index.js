@@ -6,6 +6,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
   displayLoadingIcon()
 })
 
+function addPokemon(pokemon) {
+  const $li = document.createElement('li')
+  const $div = document.createElement("div")
+  $div.classList = "pokemon-listing"
+  $div.innerHTML = `
+    <figure>
+      <img class="pokeball" src="images/pokeball.png" alt="small pokeball" />
+      <img class="card-image" src="${pokemon.sprites.front_default}" alt="${capitalizeName(pokemon.name)}" />
+      <figcaption><a href="pokemon.html?pokemon=${pokemon.name}">${capitalizeName(pokemon.name)}</a></figcaption>
+    </figure>
+  `
+  $ul.append($li)
+  $li.append($div)
+  spinner.classList.add('hidden')
+}
+
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
   .then((response) => response.json())
   .then((response) => {
@@ -19,48 +35,17 @@ window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
     return Promise.all(requests)
   }).then(responses => {
     responses.forEach(response => {
-      buildListing(response)
+      addPokemon(response)
     })
   })
 
-function displayLoadingIcon () {
+function displayLoadingIcon() {
   spinner.classList.add('spinner')
   spinner.src = 'images/loading-icon.gif'
   main.append(spinner)
 }
 
-function buildListing (pokemon) {
-  const $li = document.createElement('li')
-  const listingDiv = document.createElement('div')
-  listingDiv.className = 'pokemon-listing'
-  const listingFig = document.createElement('figure')
-  const listingImage = document.createElement('img')
-  listingImage.classList.add('card-image')
-  const listingFigCaption = document.createElement('figcaption')
-  const pokeball = document.createElement('img')
-  pokeball.src = 'images/pokeball.png'
-  pokeball.classList.add('pokeball')
-  const listingA = document.createElement('a')
-
-  $ul.append($li)
-  $li.append(listingDiv)
-  listingDiv.append(listingFig)
-  listingFig.append(pokeball)
-  listingFig.append(listingImage)
-  listingFig.append(listingFigCaption)
-  listingFigCaption.append(listingA)
-  fillListing(pokemon)
-
-  function fillListing (pokemon) {
-    listingA.href = `pokemon.html?pokemon=${pokemon.name}`
-    listingA.textContent = capitalizeName(pokemon.name)
-    listingImage.src = pokemon.sprites.front_default
-    listingImage.alt = capitalizeName(pokemon.name)
-  }
-  spinner.classList.add('hidden')
-}
-
-function capitalizeName (string) {
+function capitalizeName(string) {
   return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
     }`
 }
