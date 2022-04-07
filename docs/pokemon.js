@@ -43,12 +43,9 @@ window.fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get('pokemon')}`)
     const pokemon = parsedResponse
     addPokemon(pokemon)
     const abilityNames = pokemon.abilities
-      .map(ability => ability)
-      .map(element => element.ability)
-      .map(object => object.name)
+      .map(element => element.ability.name)
     setAbilityNames(abilityNames)
     const requests = pokemon.abilities
-      .map(ability => ability)
       .map(element => element.ability)
       .map(object => {
         return window.fetch(object.url)
