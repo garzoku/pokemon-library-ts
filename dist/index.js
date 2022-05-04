@@ -20,8 +20,8 @@ function addPokemon(pokemon) {
     $div.innerHTML = `
     <figure>
       <img class="pokeball" src="images/pokeball.png" alt="small pokeball" />
-      <img class="card-image" src="" alt="${capitalizeName(pokemon.name)}" />
-      <figcaption><a href="pokemon.html?pokemon=${pokemon.name}">${capitalizeName(pokemon.name)}</a></figcaption>
+      <img class="card-image" src="" alt="${capitalizeName(pokemon)}" />
+      <figcaption><a href="pokemon.html?pokemon=${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
     </figure>
   `;
     if ($ul && $li) {
@@ -34,8 +34,19 @@ if (typeof window !== 'undefined') {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
         .then((response) => response.json())
         .then((response) => {
-        const pokemonList = response;
-        console.log(pokemonList);
+        const pokemonList = response.results;
+        const urls = pokemonList === null || pokemonList === void 0 ? void 0 : pokemonList.map(obj => {
+            addPokemon(obj.name);
+            return obj.url;
+        });
+        urls === null || urls === void 0 ? void 0 : urls.forEach(url => {
+            return fetch(url)
+                .then(response => response.json());
+        });
+        const requests = urls === null || urls === void 0 ? void 0 : urls.forEach(url => {
+            return fetch(url)
+                .then(response => response.json());
+        });
     });
 }
 else {
