@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 type PokemonData = {
     name: string;
-    imageURL: string;
+    imageUrl: string;
 }
 
 function addPokemon(pokemon: PokemonData) {
@@ -36,6 +36,25 @@ function addPokemon(pokemon: PokemonData) {
         $li.append($div)
         $spinner.classList.add('hidden')
     }
+}
+
+type PokemonResponse = {
+    data?: {
+        pokemon: PokemonData
+    }
+    errors?: { message: string }[]
+}
+
+console.log("exec")
+if (typeof window !== 'undefined') {
+
+    window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
+        .then((response) => response.json())
+        .then((response: PokemonResponse) => {
+            console.log(response.data?.pokemon.name || "")
+        })
+} else {
+    console.log('You are on the server')
 }
 /*
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
