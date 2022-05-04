@@ -30,6 +30,17 @@ function addPokemon(pokemon) {
         $spinner.classList.add('hidden');
     }
 }
+if (typeof window !== 'undefined') {
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
+        .then((response) => response.json())
+        .then((response) => {
+        const pokemonList = response;
+        console.log(pokemonList);
+    });
+}
+else {
+    console.log('You are on the server');
+}
 /*
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
     .then((response) => response.json())
@@ -52,12 +63,11 @@ window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
 function displayLoadingIcon() {
     $spinner.classList.add('spinner');
     $spinner.src = './images/loading-icon.gif';
-    console.log($spinner);
     if ($main) {
         // console.log($main)
         $main.append($spinner);
     }
 }
-function capitalizeName(name) {
-    return `${name.slice(0, 1).toUpperCase()}${name.slice(1, name.length)}`;
+function capitalizeName(word) {
+    return `${word.slice(0, 1).toUpperCase()}${word.slice(1, word.length)}`;
 }

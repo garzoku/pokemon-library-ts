@@ -1,6 +1,6 @@
 {
-  "compilerOptions": { //where we store all files
-    "outDir": "./dist", //where we will have all our JS files to trans
+  "compilerOptions": {
+    "outDir": "dist", //where we will have all our JS files to trans
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */
@@ -94,7 +94,7 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": [ // Where are your .ts files?
-    "./src",
-    "dist/pokemon.js"
+    "src",
+    "dist/index.js",
   ]
 }
