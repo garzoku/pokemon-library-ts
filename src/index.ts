@@ -63,7 +63,7 @@ if (typeof window !== 'undefined') {
             })
         })
 } else {
-    console.log('You are on the server')
+    console.log('You hit the server')
 }
 /*
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
