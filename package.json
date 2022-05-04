@@ -4,7 +4,7 @@
   "description": "created this package after having issues with package-lock",
   "main": "index.html",
   "scripts": {
-    "test": "mocha"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,14 @@
   },
   "homepage": "https://github.com/garzoku/pokemon-library#readme",
   "devDependencies": {
-    "standard": "^16.0.4"
+    "@types/jest": "^27.5.0",
+    "standard": "^16.0.4",
+    "ts-jest": "^28.0.1"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "typescript": "^4.6.4"
   }
 }
