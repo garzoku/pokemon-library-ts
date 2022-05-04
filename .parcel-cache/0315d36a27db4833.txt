@@ -1,17 +1,27 @@
-10987
-57/home/garzoku/pokemon-library-ts/pokemon-library/index.ts1651677240529807500 0
-59/home/garzoku/pokemon-library-ts/pokemon-library/index.html1651676424779807500 0
+10997
+59/home/garzoku/pokemon-library-ts/pokemon-library/index.html1651679320379807500 0
 68/home/garzoku/pokemon-library-ts/pokemon-library/images/pokeball.png1651676424779807500 0
 78/home/garzoku/pokemon-library-ts/pokemon-library/images/pokemon-background.png1651676424779807500 0
 73/home/garzoku/pokemon-library-ts/pokemon-library/images/gray-pokeball.png1651676424769807500 0
 55/home/garzoku/pokemon-library-ts/pokemon-library/images1651676424779807500 1
-62/home/garzoku/pokemon-library-ts/pokemon-library/tsconfig.json1651677027739807500 0
-64/home/garzoku/pokemon-library-ts/pokemon-library/pokemon.test.ts1651677972089807500 0
+62/home/garzoku/pokemon-library-ts/pokemon-library/tsconfig.json1651679236959807500 0
+64/home/garzoku/pokemon-library-ts/pokemon-library/dist/index.html1651679421199807500 0
+72/home/garzoku/pokemon-library-ts/pokemon-library/dist/index.75a90472.css1651679421139807500 0
+76/home/garzoku/pokemon-library-ts/pokemon-library/dist/index.75a90472.css.map1651679421149807500 0
+64/home/garzoku/pokemon-library-ts/pokemon-library/dist/pokemon.js1651679203769807500 0
+71/home/garzoku/pokemon-library-ts/pokemon-library/dist/index.f925a820.js1651679421139807500 0
+62/home/garzoku/pokemon-library-ts/pokemon-library/dist/index.js1651678924039807500 0
+53/home/garzoku/pokemon-library-ts/pokemon-library/dist1651679421199807500 1
 58/home/garzoku/pokemon-library-ts/pokemon-library/README.md1651676424769807500 0
 63/home/garzoku/pokemon-library-ts/pokemon-library/jest.config.js1651676609249807500 0
 61/home/garzoku/pokemon-library-ts/pokemon-library/package.json1651678129129807500 0
 59/home/garzoku/pokemon-library-ts/pokemon-library/.gitignore1651677423989807500 0
-66/home/garzoku/pokemon-library-ts/pokemon-library/package-lock.json1651676573699807500 0
+61/home/garzoku/pokemon-library-ts/pokemon-library/src/index.ts1651680504579807500 0
+66/home/garzoku/pokemon-library-ts/pokemon-library/src/index.test.ts1651679014279807500 0
+68/home/garzoku/pokemon-library-ts/pokemon-library/src/pokemon.test.ts1651677972089807500 0
+63/home/garzoku/pokemon-library-ts/pokemon-library/src/pokemon.ts1651678953239807500 0
+52/home/garzoku/pokemon-library-ts/pokemon-library/src1651679212169807500 1
+66/home/garzoku/pokemon-library-ts/pokemon-library/package-lock.json1651678905159807500 0
 87/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/resolve-from/package.json1651676469419807500 0
 82/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/resolve-from/license1651676469459807500 0
 85/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/string-length/readme.md1651676572509807500 0
@@ -1213,7 +1223,7 @@
 107/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/caniuse-lite/data/features/abortcontroller.js1651676572629807500 0
 83/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/lodash/_createCtor.js1651676470509807500 0
 96/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint/lib/rules/no-self-assign.js1651676470779807500 0
-56/home/garzoku/pokemon-library-ts/pokemon-library/app.css1651676424769807500 0
+56/home/garzoku/pokemon-library-ts/pokemon-library/app.css1651679420449807500 0
 104/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@bcoe/v8-coverage/dist/lib/_src/compare.ts1651676573169807500 0
 86/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/lodash/_arrayIncludes.js1651676469749807500 0
 99/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@babel/plugin-syntax-async-generators1651676572479807500 1
@@ -4462,7 +4472,7 @@
 111/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@babel/core/src/config/resolve-targets-browser.ts1651676573259807500 0
 90/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/convert-source-map/README.md1651676572499807500 0
 89/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/emoji-regex/LICENSE-MIT.txt1651676469539807500 0
-61/home/garzoku/pokemon-library-ts/pokemon-library/node_modules1651676573579807500 1
+61/home/garzoku/pokemon-library-ts/pokemon-library/node_modules1651678905079807500 1
 105/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint/lib/cli-engine/formatters/compact.js1651676470289807500 0
 98/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint/lib/rules/no-return-assign.js1651676470779807500 0
 84/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/get-symbol-description1651676469809807500 1
@@ -4830,7 +4840,7 @@
 84/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/lodash/_arrayFilter.js1651676469719807500 0
 94/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@jridgewell/sourcemap-codec/dist1651676572759807500 1
 83/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/enquirer/lib/timer.js1651676470139807500 0
-48/home/garzoku/pokemon-library-ts/pokemon-library1651678202259807500 1
+48/home/garzoku/pokemon-library-ts/pokemon-library1651679054369807500 1
 98/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint/lib/rules/no-import-assign.js1651676470719807500 0
 92/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint/lib/rules/jsx-quotes.js1651676470579807500 0
 96/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/table/node_modules/ajv/lib/2019.ts1651676470729807500 0
@@ -5304,6 +5314,7 @@
 81/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/safe-buffer/LICENSE1651676572479807500 0
 112/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/caniuse-lite/data/features/background-clip-text.js1651676573179807500 0
 87/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/prompts/lib/util/style.js1651676573219807500 0
+85/home/garzoku/pokemon-library-ts/pokemon-library/dist/pokemon-background.86b31666.png1651679421139807500 0
 102/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/table/dist/src/injectHeaderConfig.js.map1651676470239807500 0
 83/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/lodash/_baseReduce.js1651676470329807500 0
 90/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/es-to-primitive/CHANGELOG.md1651676469929807500 0
@@ -5672,7 +5683,6 @@
 93/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/tsconfig-paths/lib/options.d.ts1651676470019807500 0
 85/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@babel/compat-data/data1651676572779807500 1
 110/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@babel/compat-data/data/overlapping-plugins.json1651676572759807500 0
-62/home/garzoku/pokemon-library-ts/pokemon-library/index.test.ts1651678185099807500 0
 105/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@babel/compat-data/data/native-modules.json1651676572739807500 0
 96/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/jsx-ast-utils/lib/eventHandlers.js1651676470059807500 0
 87/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint-utils/package.json1651676469669807500 0
@@ -5731,7 +5741,6 @@
 101/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/ts-jest/node_modules/json5/package.json1651676572979807500 0
 86/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/lodash.memoize/README.md1651676572359807500 0
 110/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/@babel/traverse/scripts/generators/validators.js1651676573139807500 0
-59/home/garzoku/pokemon-library-ts/pokemon-library/pokemon.ts1651678058739807500 0
 102/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/es-abstract/2017/ToPropertyDescriptor.js1651676471279807500 0
 78/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/standard/LICENSE1651676469339807500 0
 81/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/resolve-cwd/license1651676572479807500 0
@@ -6537,6 +6546,7 @@
 81/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/lodash/flowRight.js1651676470909807500 0
 96/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint/lib/rules/no-extra-label.js1651676470699807500 0
 111/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint-plugin-import/docs/rules/no-self-import.md1651676470529807500 0
+75/home/garzoku/pokemon-library-ts/pokemon-library/dist/index.f925a820.js.map1651679421149807500 0
 125/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/pretty-format/node_modules/react-is/cjs/react-is.development.js1651676572529807500 0
 105/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint-plugin-import/docs/rules/no-cycle.md1651676470499807500 0
 116/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint-plugin-import/docs/rules/no-internal-modules.md1651676470509807500 0
@@ -7494,7 +7504,7 @@
 97/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/es-abstract/2017/thisNumberValue.js1651676471209807500 0
 95/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/es-abstract/2017/TimeWithinDay.js1651676471219807500 0
 80/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/es-abstract/.nycrc1651676469589807500 0
-80/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/.package-lock.json1651676573719807500 0
+80/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/.package-lock.json1651678905199807500 0
 89/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/semver/functions/compare.js1651676469769807500 0
 131/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/eslint-plugin-react/node_modules/resolve/test/resolver/same_names/foo1651676470389807500 1
 80/home/garzoku/pokemon-library-ts/pokemon-library/node_modules/es-abstract/es6.js1651676470679807500 0

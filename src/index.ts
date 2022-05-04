@@ -1,36 +1,43 @@
+let $main: HTMLInputElement | null
+let $ul: HTMLUListElement | null
+let $spinner: HTMLImageElement
 
-
-/*
-const main = document.querySelector('main')
-const $ul = document.querySelector('.pokemon')
-const spinner = document.createElement('img')
-
-
-
-
-
+if (typeof window !== 'undefined') {
+    $main = document.querySelector<HTMLInputElement>("main")
+    $ul = document.querySelector<HTMLUListElement>("ul")
+    $spinner = document.createElement('img')
+} else {
+    console.log('You are on the server')
+}
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
     displayLoadingIcon()
 })
 
-function addPokemon(pokemon) {
+type PokemonData = {
+    name: string;
+    imageURL: string;
+}
+
+function addPokemon(pokemon: PokemonData) {
     const $li = document.createElement('li')
     const $div = document.createElement('div')
-    $div.classList = 'pokemon-listing'
+    $div.classList.add('pokemon-listing')
     $div.innerHTML = `
     <figure>
       <img class="pokeball" src="images/pokeball.png" alt="small pokeball" />
-      <img class="card-image" src="${pokemon.sprites.front_default}" alt="${capitalizeName(pokemon.name)}" />
+      <img class="card-image" src="" alt="${capitalizeName(pokemon.name)}" />
       <figcaption><a href="pokemon.html?pokemon=${pokemon.name}">${capitalizeName(pokemon.name)}</a></figcaption>
     </figure>
   `
-    $ul.append($li)
-    $li.append($div)
-    spinner.classList.add('hidden')
+    if ($ul && $li) {
+        $ul.append($li)
+        $li.append($div)
+        $spinner.classList.add('hidden')
+    }
 }
-
+/*
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
     .then((response) => response.json())
     .then((response) => {
@@ -48,14 +55,19 @@ window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
         })
     })
 
+    */
+
 function displayLoadingIcon() {
-    spinner.classList.add('spinner')
-    spinner.src = 'images/loading-icon.gif'
-    main.append(spinner)
+    $spinner.classList.add('spinner')
+    $spinner.src = './images/loading-icon.gif'
+    console.log($spinner)
+    if ($main) {
+        // console.log($main)
+        $main.append($spinner)
+    }
 }
 
-function capitalizeName(string) {
-    return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
+function capitalizeName(name: string) {
+    return `${name.slice(0, 1).toUpperCase()}${name.slice(1, name.length)
         }`
 }
-*/

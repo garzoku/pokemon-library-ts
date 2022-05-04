@@ -1,3 +1,4 @@
+"use strict";
 /*const main = document.querySelector('main')
 const $pokemon = document.querySelector('#pokemon')
 const spinner = document.createElement('img')

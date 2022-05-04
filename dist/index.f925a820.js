@@ -6,11 +6,8 @@ if (typeof window !== 'undefined') {
     $main = document.querySelector("main");
     $ul = document.querySelector("ul");
     $spinner = document.createElement('img');
-}
-else {
-    console.log('You are on the server');
-}
-document.addEventListener('DOMContentLoaded', (event) => {
+} else console.log('You are on the server');
+document.addEventListener('DOMContentLoaded', (event)=>{
     displayLoadingIcon();
 });
 function addPokemon(pokemon) {
@@ -48,16 +45,15 @@ window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
         })
     })
 
-    */
-function displayLoadingIcon() {
+    */ function displayLoadingIcon() {
     $spinner.classList.add('spinner');
     $spinner.src = './images/loading-icon.gif';
     console.log($spinner);
-    if ($main) {
-        // console.log($main)
-        $main.append($spinner);
-    }
+    if ($main) // console.log($main)
+    $main.append($spinner);
 }
 function capitalizeName(name) {
     return `${name.slice(0, 1).toUpperCase()}${name.slice(1, name.length)}`;
 }
+
+//# sourceMappingURL=index.f925a820.js.map
