@@ -1,3 +1,6 @@
+
+
+/*
 const main = document.querySelector('main')
 const $ul = document.querySelector('.pokemon')
 const spinner = document.createElement('img')
@@ -8,14 +11,6 @@ const spinner = document.createElement('img')
 
 
 
-
-
-
-
-
-
-
-/*
 document.addEventListener('DOMContentLoaded', (event) => {
     displayLoadingIcon()
 })

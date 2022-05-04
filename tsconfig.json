@@ -1,6 +1,5 @@
 {
-  "compilerOptions": {
-    "rootDir": "./src", //where we store all files
+  "compilerOptions": { //where we store all files
     "outDir": "./dist", //where we will have all our JS files to trans
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Projects */
@@ -94,4 +93,8 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
+  "include": [ // Where are your .ts files?
+    "./src",
+    "dist/pokemon.js"
+  ]
 }

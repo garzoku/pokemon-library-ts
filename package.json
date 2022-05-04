@@ -2,7 +2,7 @@
   "name": "pokemon-library",
   "version": "1.0.0",
   "description": "created this package after having issues with package-lock",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
