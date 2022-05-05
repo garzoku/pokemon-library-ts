@@ -95,7 +95,7 @@ window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
             addPokemon(response)
         })
     })
-
+ 
     */
 
 function displayLoadingIcon() {
