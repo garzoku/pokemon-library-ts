@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 })
 
 
-function addPokemon(pokemon: string) {
+function addPokemon(pokemon: string, pokemonImage: string) {
     const $li = document.createElement('li')
     const $div = document.createElement('div')
     $div.classList.add('pokemon-listing')
     $div.innerHTML = `
     <figure>
       <img class="pokeball" src="images/pokeball.png" alt="small pokeball" />
-      <img class="card-image" src="" alt="${capitalizeName(pokemon)}" />
+      <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
       <figcaption><a href="pokemon.html?pokemon=${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
     </figure>
   `
@@ -31,6 +31,13 @@ function addPokemon(pokemon: string) {
         $ul.append($li)
         $li.append($div)
         $spinner.classList.add('hidden')
+    }
+}
+
+type PokemonData = {
+    name: string;
+    sprites: {
+        front_default: string
     }
 }
 
@@ -43,28 +50,34 @@ type PokemonResponse = {
     errors?: { message: string }[]
 }
 
+function getPokemonUrl(pokemon: { name: string; url: string }) {
+    return pokemon.url;
+}
+
 if (typeof window !== 'undefined') {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
         .then((response) => response.json())
         .then((response: PokemonResponse) => {
             const pokemonList = response.results
 
-            const urls = pokemonList?.map(obj => {
-                addPokemon(obj.name)
-                return obj.url
-            })
-            urls?.forEach(url => {
-                return fetch(url)
+            const requests = pokemonList?.map(obj => {
+                // addPokemon(obj.name)
+                return fetch(obj.url)
                     .then(response => response.json())
             })
-            const requests = urls?.forEach(url => {
-                return fetch(url)
-                    .then(response => response.json())
+            requests?.forEach((request) => {
+                return Promise.all<PokemonData>(requests)
+                    .then(responses => {
+                        responses.forEach(response => {
+                            addPokemon(response.name, response.sprites.front_default)
+                        })
+                    })
+
             })
+
         })
-} else {
-    console.log('You are on the server')
 }
+
 /*
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
     .then((response) => response.json())

@@ -10,14 +10,14 @@ if (typeof window !== 'undefined') {
 document.addEventListener('DOMContentLoaded', (event)=>{
     displayLoadingIcon();
 });
-function addPokemon(pokemon) {
+function addPokemon(pokemon, pokemonImage) {
     const $li = document.createElement('li');
     const $div = document.createElement('div');
     $div.classList.add('pokemon-listing');
     $div.innerHTML = `
     <figure>
       <img class="pokeball" src="images/pokeball.png" alt="small pokeball" />
-      <img class="card-image" src="" alt="${capitalizeName(pokemon)}" />
+      <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
       <figcaption><a href="pokemon.html?pokemon=${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
     </figure>
   `;
@@ -27,23 +27,25 @@ function addPokemon(pokemon) {
         $spinner.classList.add('hidden');
     }
 }
+function getPokemonUrl(pokemon) {
+    return pokemon.url;
+}
 if (typeof window !== 'undefined') fetch('https://pokeapi.co/api/v2/pokemon?limit=50').then((response)=>response.json()
 ).then((response1)=>{
     const pokemonList = response1.results;
-    const urls = pokemonList === null || pokemonList === void 0 ? void 0 : pokemonList.map((obj)=>{
-        addPokemon(obj.name);
-        return obj.url;
-    });
-    urls === null || urls === void 0 || urls.forEach((url)=>{
-        return fetch(url).then((response)=>response.json()
+    const requests = pokemonList === null || pokemonList === void 0 ? void 0 : pokemonList.map((obj)=>{
+        // addPokemon(obj.name)
+        return fetch(obj.url).then((response)=>response.json()
         );
     });
-    const requests = urls === null || urls === void 0 ? void 0 : urls.forEach((url)=>{
-        return fetch(url).then((response)=>response.json()
-        );
+    requests === null || requests === void 0 || requests.forEach((request)=>{
+        return Promise.all(requests).then((responses)=>{
+            responses.forEach((response)=>{
+                addPokemon(response.name, response.sprites.front_default);
+            });
+        });
     });
 });
-else console.log('You are on the server');
 /*
 window.fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
     .then((response) => response.json())
