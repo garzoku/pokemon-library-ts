@@ -96,5 +96,6 @@
   "include": [ // Where are your .ts files?
     "src",
     "dist/index.js",
+    "node.d.ts",
   ]
 }
