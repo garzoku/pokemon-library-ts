@@ -540,6 +540,8 @@ let $ul;
 let $spinner;
 /// <reference path="node.d.ts"/>
 const pokeball_png_1 = __importDefault(require("../images/pokeball.png"));
+/// <reference path="node.d.ts"/>
+const pokemon_html_1 = __importDefault(require("../pokemon.html"));
 if (typeof window !== 'undefined') {
     $main = document.querySelector("main");
     $ul = document.querySelector("ul");
@@ -551,7 +553,6 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     ).then((response1)=>{
         const pokemonList = response1.results;
         const requests = pokemonList === null || pokemonList === void 0 ? void 0 : pokemonList.map((obj)=>{
-            // addPokemon(obj.name)
             return fetch(obj.url).then((response)=>response.json()
             );
         });
@@ -572,17 +573,16 @@ function addPokemon(pokemon, pokemonImage) {
     <figure>
       <img class="pokeball" src="${pokeball_png_1.default}" alt="small pokeball" />
       <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
-      <figcaption><a href="pokemon.html?pokemon=${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
+      <figcaption><a id=${pokemon} href="${pokemon_html_1.default}">${capitalizeName(pokemon)}></a></figcaption>
     </figure>
   `;
-    if ($ul && $li) {
-        $ul.append($li);
-        $li.append($div);
-        $spinner.classList.add('hidden');
-    }
-}
-function getPokemonUrl(pokemon) {
-    return pokemon.url;
+    $ul === null || $ul === void 0 || $ul.append($li);
+    $li === null || $li === void 0 || $li.append($div);
+    $spinner.classList.add('hidden');
+    const $a = $div.querySelector("figure>figcaption>a");
+    $a === null || $a === void 0 || $a.addEventListener("click", (event)=>{
+        localStorage.setItem("pokemon", pokemon);
+    });
 }
 function displayLoadingIcon() {
     $spinner.classList.add('spinner');
@@ -593,7 +593,7 @@ function capitalizeName(word) {
     return `${word.slice(0, 1).toUpperCase()}${word.slice(1, word.length)}`;
 }
 
-},{"../images/pokeball.png":"3Plbk"}],"3Plbk":[function(require,module,exports) {
+},{"../images/pokeball.png":"3Plbk","../pokemon.html":"6jvYS"}],"3Plbk":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('clPkD') + "pokeball.35fac06e.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"khPxl"}],"khPxl":[function(require,module,exports) {
@@ -630,6 +630,9 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}]},["fYiXU","7elyk"], "7elyk", "parcelRequire041b")
+},{}],"6jvYS":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('clPkD') + "pokemon.e53ac159.html" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"khPxl"}]},["fYiXU","7elyk"], "7elyk", "parcelRequire041b")
 
 //# sourceMappingURL=index.1f978438.js.map

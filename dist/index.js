@@ -8,6 +8,8 @@ let $ul;
 let $spinner;
 /// <reference path="node.d.ts"/>
 const pokeball_png_1 = __importDefault(require("../images/pokeball.png"));
+/// <reference path="node.d.ts"/>
+const pokemon_html_1 = __importDefault(require("../pokemon.html"));
 if (typeof window !== 'undefined') {
     $main = document.querySelector("main");
     $ul = document.querySelector("ul");
@@ -24,7 +26,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then((response) => {
             const pokemonList = response.results;
             const requests = pokemonList === null || pokemonList === void 0 ? void 0 : pokemonList.map(obj => {
-                // addPokemon(obj.name)
                 return fetch(obj.url)
                     .then(response => response.json());
             });
@@ -47,17 +48,16 @@ function addPokemon(pokemon, pokemonImage) {
     <figure>
       <img class="pokeball" src="${pokeball_png_1.default}" alt="small pokeball" />
       <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
-      <figcaption><a href="pokemon.html?pokemon=${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
+      <figcaption><a id=${pokemon} href="${pokemon_html_1.default}">${capitalizeName(pokemon)}></a></figcaption>
     </figure>
   `;
-    if ($ul && $li) {
-        $ul.append($li);
-        $li.append($div);
-        $spinner.classList.add('hidden');
-    }
-}
-function getPokemonUrl(pokemon) {
-    return pokemon.url;
+    $ul === null || $ul === void 0 ? void 0 : $ul.append($li);
+    $li === null || $li === void 0 ? void 0 : $li.append($div);
+    $spinner.classList.add('hidden');
+    const $a = $div.querySelector("figure>figcaption>a");
+    $a === null || $a === void 0 ? void 0 : $a.addEventListener("click", (event) => {
+        localStorage.setItem("pokemon", pokemon);
+    });
 }
 function displayLoadingIcon() {
     $spinner.classList.add('spinner');

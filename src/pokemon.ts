@@ -1,18 +1,41 @@
-/*const main = document.querySelector('main')
-const $pokemon = document.querySelector('#pokemon')
-const spinner = document.createElement('img')
+let $main: HTMLInputElement | null
+let $pokemon: HTMLDivElement | null
+let $spinner: HTMLImageElement
 
 document.addEventListener('DOMContentLoaded', (event) => {
     displayLoadingIcon()
 })
 
-function addPokemon(pokemon) {
+if (typeof window !== undefined) {
+    $main = document.querySelector<HTMLInputElement>('main')
+    $pokemon = document.querySelector<HTMLDivElement>('#pokemon')
+    $spinner = document.createElement('img')
+}
+
+type PokemonData = {
+    name: string;
+    sprites: {
+        front_default: string
+    }
+}
+
+type PokemonResponse = {
+    results?: {
+        name: string;
+        url: string;
+    }[]
+
+    errors?: { message: string }[]
+}
+
+
+function addPokemon(pokemon: string, pokemonImage: string) {
     const div = document.createElement('div')
     div.innerHTML = `
 <div class="pokemon-details">
   <figure>
-    <img src=${pokemon.sprites.front_default} alt = ${capitalizeName(pokemon.name)} />
-    <figcaption>${capitalizeName(pokemon.name)}</figcaption>
+    <img src=${pokemonImage} alt = ${capitalizeName(pokemon)} />
+    <figcaption>${capitalizeName(pokemon)}</figcaption>
   </figure >
 
   <h2>Abilities</h2>
@@ -32,38 +55,42 @@ function addPokemon(pokemon) {
   </ul>
 </div >
     `
-    $pokemon.append(div)
+    $pokemon?.append(div)
 }
 
-const url = new URL(window.location)
-const queryString = new URLSearchParams(url.search)
-window.fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get('pokemon')}`)
-    .then(response => response.json())
-    .then(parsedResponse => {
-        const pokemon = parsedResponse
-        addPokemon(pokemon)
-        const abilityNames = pokemon.abilities
-            .map(element => element.ability.name)
-        setAbilityNames(abilityNames)
-        const requests = pokemon.abilities
-            .map(element => element.ability)
-            .map(object => {
-                return window.fetch(object.url)
-                    .then(response => response.json())
-            })
-        return Promise.all(requests)
-    }).then(response => {
-        const savedResponse = response
-        const descriptions = []
-        for (const object of savedResponse) {
-            for (const array of object.effect_entries) {
-                if (array.language.name === 'en') { descriptions.push(array.short_effect) }
-            }
-        }
-        setAbilityDescription(descriptions)
-        spinner.classList.add('hidden')
-    })
-
+//const url: URL = new URL(window.location.search)
+//console.log(url)
+//const queryString: URLSearchParams = new URLSearchParams(url.search)
+//console.log(queryString.get('pokemon'))
+if (typeof window !== undefined) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${localStorage.getItem("pokemon")}`)
+        .then(response => response.json())
+        .then((parsedResponse: PokemonData) => {
+            const pokemon = parsedResponse
+            addPokemon(pokemon.name, pokemon.sprites.front_default)
+            //const abilityNames = pokemon.abilities
+            //    .map(element => element.ability.name)
+            //setAbilityNames(abilityNames)
+            // const requests = pokemon.abilities
+            //    .map(element => element.ability)
+            //    .map(object => {
+            //        return window.fetch(object.url)
+            //           .then(response => response.json())
+            //   })
+            // return Promise.all(requests)
+        })//.then(response => {
+    //  const savedResponse = response
+    //  const descriptions = []
+    //  for (const object of savedResponse) {
+    //     for (const array of object.effect_entries) {
+    //         if (array.language.name === 'en') { descriptions.push(array.short_effect) }
+    //     }
+    // }
+    //setAbilityDescription(descriptions)
+    //  $spinner.classList.add('hidden')
+    // })   
+}
+/*
 function setAbilityNames(names) {
     const $abilityNames = document.querySelectorAll('.ability-name')
     for (let i = 0; i < names.length; i++) {
@@ -86,15 +113,14 @@ function setAbilityDescription(abilitiesArray) {
         }
     }
 }
-
+*/
 function displayLoadingIcon() {
-    spinner.classList.add('spinner')
-    spinner.src = 'images/loading-icon.gif'
-    main.append(spinner)
+    $spinner.classList.add('spinner')
+    $spinner.src = 'images/loading-icon.gif'
+    $main?.append($spinner)
 }
 
-function capitalizeName(string) {
-    return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.Length)
+function capitalizeName(name: string) {
+    return `${name.slice(0, 1).toUpperCase()}${name.slice(1, name.length)
         }`
 }
-*/

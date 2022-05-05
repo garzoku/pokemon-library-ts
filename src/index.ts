@@ -4,6 +4,8 @@ let $spinner: HTMLImageElement
 
 /// <reference path="node.d.ts"/>
 import pokeballIcon from '../images/pokeball.png'
+/// <reference path="node.d.ts"/>
+import pokemonPage from '../pokemon.html'
 
 if (typeof window !== 'undefined') {
     $main = document.querySelector<HTMLInputElement>("main")
@@ -23,7 +25,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 const pokemonList = response.results
 
                 const requests = pokemonList?.map(obj => {
-                    // addPokemon(obj.name)
                     return fetch(obj.url)
                         .then(response => response.json())
                 })
@@ -50,14 +51,19 @@ function addPokemon(pokemon: string, pokemonImage: string) {
     <figure>
       <img class="pokeball" src="${pokeballIcon}" alt="small pokeball" />
       <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
-      <figcaption><a href="pokemon.html?pokemon=${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
+      <figcaption><a id=${pokemon} href="${pokemonPage}">${capitalizeName(pokemon)}></a></figcaption>
     </figure>
   `
-    if ($ul && $li) {
-        $ul.append($li)
-        $li.append($div)
-        $spinner.classList.add('hidden')
-    }
+
+    $ul?.append($li)
+    $li?.append($div)
+    $spinner.classList.add('hidden')
+    const $a = $div.querySelector("figure>figcaption>a")
+    $a?.addEventListener("click", (event) => {
+        localStorage.setItem("pokemon", pokemon)
+    })
+
+
 }
 
 type PokemonData = {
@@ -74,10 +80,6 @@ type PokemonResponse = {
     }[]
 
     errors?: { message: string }[]
-}
-
-function getPokemonUrl(pokemon: { name: string; url: string }) {
-    return pokemon.url;
 }
 
 function displayLoadingIcon() {
