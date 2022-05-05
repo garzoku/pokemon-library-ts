@@ -17,15 +17,12 @@ type PokemonData = {
     sprites: {
         front_default: string
     }
-}
-
-type PokemonResponse = {
-    results?: {
-        name: string;
-        url: string;
+    abilities: {
+        ability: {
+            name: string
+            url: string
+        }
     }[]
-
-    errors?: { message: string }[]
 }
 
 
@@ -58,47 +55,44 @@ function addPokemon(pokemon: string, pokemonImage: string) {
     $pokemon?.append(div)
 }
 
-//const url: URL = new URL(window.location.search)
-//console.log(url)
-//const queryString: URLSearchParams = new URLSearchParams(url.search)
-//console.log(queryString.get('pokemon'))
 if (typeof window !== undefined) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${localStorage.getItem("pokemon")}`)
         .then(response => response.json())
         .then((parsedResponse: PokemonData) => {
             const pokemon = parsedResponse
             addPokemon(pokemon.name, pokemon.sprites.front_default)
-            //const abilityNames = pokemon.abilities
-            //    .map(element => element.ability.name)
-            //setAbilityNames(abilityNames)
-            // const requests = pokemon.abilities
-            //    .map(element => element.ability)
-            //    .map(object => {
-            //        return window.fetch(object.url)
-            //           .then(response => response.json())
-            //   })
-            // return Promise.all(requests)
-        })//.then(response => {
-    //  const savedResponse = response
-    //  const descriptions = []
-    //  for (const object of savedResponse) {
-    //     for (const array of object.effect_entries) {
-    //         if (array.language.name === 'en') { descriptions.push(array.short_effect) }
-    //     }
-    // }
-    //setAbilityDescription(descriptions)
-    //  $spinner.classList.add('hidden')
-    // })   
+            console.log(pokemon)
+            const abilityNames = pokemon.abilities
+                .map(element => element.ability.name)
+            setAbilityNames(abilityNames)
+            const requests = pokemon.abilities
+                .map(element => element.ability)
+                .map(object => {
+                    return window.fetch(object.url)
+                        .then(response => response.json())
+                })
+            return Promise.all(requests)
+        }).then(response => {
+            const savedResponse = response
+            const descriptions = []
+            for (const object of savedResponse) {
+                for (const array of object.effect_entries) {
+                    if (array.language.name === 'en') { descriptions.push(array.short_effect) }
+                }
+            }
+            setAbilityDescription(descriptions)
+            $spinner.classList.add('hidden')
+        })
 }
-/*
-function setAbilityNames(names) {
+
+function setAbilityNames(names: string[]) {
     const $abilityNames = document.querySelectorAll('.ability-name')
     for (let i = 0; i < names.length; i++) {
         $abilityNames[i].textContent = capitalizeName(names[i])
     }
 }
 
-function setAbilityDescription(abilitiesArray) {
+function setAbilityDescription(abilitiesArray: string[]) {
     const $lis = document.querySelectorAll('li')
     const $abilityDescrip = document.querySelectorAll('.ability-short-description')
     for (let i = 0; i < abilitiesArray.length; i++) {
@@ -113,7 +107,7 @@ function setAbilityDescription(abilitiesArray) {
         }
     }
 }
-*/
+
 function displayLoadingIcon() {
     $spinner.classList.add('spinner')
     $spinner.src = 'images/loading-icon.gif'
