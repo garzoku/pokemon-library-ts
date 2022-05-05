@@ -29,13 +29,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return fetch(obj.url)
                     .then(response => response.json());
             });
-            requests === null || requests === void 0 ? void 0 : requests.forEach((request) => {
-                return Promise.all(requests)
-                    .then(responses => {
-                    responses.forEach(response => {
-                        addPokemon(response.name, response.sprites.front_default);
-                    });
-                });
+            if (requests) {
+                return Promise.all(requests);
+            }
+        }).then(responses => {
+            responses === null || responses === void 0 ? void 0 : responses.forEach(response => {
+                addPokemon(response.name, response.sprites.front_default);
             });
         });
     }
@@ -48,7 +47,7 @@ function addPokemon(pokemon, pokemonImage) {
     <figure>
       <img class="pokeball" src="${pokeball_png_1.default}" alt="small pokeball" />
       <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
-      <figcaption><a id=${pokemon} href="${pokemon_html_1.default}">${capitalizeName(pokemon)}></a></figcaption>
+      <figcaption><a href="${pokemon_html_1.default}" id="${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
     </figure>
   `;
     $ul === null || $ul === void 0 ? void 0 : $ul.append($li);
@@ -56,6 +55,7 @@ function addPokemon(pokemon, pokemonImage) {
     $spinner.classList.add('hidden');
     const $a = $div.querySelector("figure>figcaption>a");
     $a === null || $a === void 0 ? void 0 : $a.addEventListener("click", (event) => {
+        console.log(pokemon);
         localStorage.setItem("pokemon", pokemon);
     });
 }

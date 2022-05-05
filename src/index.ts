@@ -28,16 +28,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     return fetch(obj.url)
                         .then(response => response.json())
                 })
-                requests?.forEach((request) => {
+                if (requests) {
                     return Promise.all<PokemonData>(requests)
-                        .then(responses => {
-                            responses.forEach(response => {
-                                addPokemon(response.name, response.sprites.front_default)
-                            })
-                        })
-
+                }
+            }).then(responses => {
+                responses?.forEach(response => {
+                    addPokemon(response.name, response.sprites.front_default)
                 })
-
             })
     }
 })
@@ -51,7 +48,7 @@ function addPokemon(pokemon: string, pokemonImage: string) {
     <figure>
       <img class="pokeball" src="${pokeballIcon}" alt="small pokeball" />
       <img class="card-image" src="${pokemonImage}" alt="${capitalizeName(pokemon)}" />
-      <figcaption><a id=${pokemon} href="${pokemonPage}">${capitalizeName(pokemon)}></a></figcaption>
+      <figcaption><a href="${pokemonPage}" id="${pokemon}">${capitalizeName(pokemon)}</a></figcaption>
     </figure>
   `
 
@@ -60,6 +57,7 @@ function addPokemon(pokemon: string, pokemonImage: string) {
     $spinner.classList.add('hidden')
     const $a = $div.querySelector("figure>figcaption>a")
     $a?.addEventListener("click", (event) => {
+        console.log(pokemon)
         localStorage.setItem("pokemon", pokemon)
     })
 
@@ -91,6 +89,5 @@ function displayLoadingIcon() {
 }
 
 function capitalizeName(word: string) {
-    return `${word.slice(0, 1).toUpperCase()}${word.slice(1, word.length)
-        }`
+    return `${word.slice(0, 1).toUpperCase()}${word.slice(1, word.length)}`
 }
