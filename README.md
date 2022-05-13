@@ -1,4 +1,4 @@
-# PokeDex
+# PokeDex (TypeScript Edition)
 
 You're making a PokeDex, a list of Pokemon.
 
@@ -55,12 +55,12 @@ A Pokemon's details page should look like this when it's generated:
 * All Pokemon names should be Title Cased
 * All pages should load in less than 5 seconds on a high-speed connection
 * Loading indicators should be displayed during network requests
-* The JavaScript should pass the [Standard](https://standardjs.com/) JS linter with no errors or warnings
 
 ## Rubric
 
 ### Attention to detail
 
+* [ ] - Written in TypeScript
 * [ ] - Reasonable commit history
 * [ ] - Homepage lists 50 Pokemon
 * [ ] - Each Pokemon listing contains an image, a name, and a link
@@ -69,6 +69,8 @@ A Pokemon's details page should look like this when it's generated:
 
 ### Code Quality
 
-* [ ] - Passes Standard linting with no errors or warnings
+* [ ] - Uses TypeScript in strict mode
+* [ ] - Doesn't use any TypeScript escape hatches such as `any` or casting
+* [ ] - All functions (including ones that do DOM manipulation, excluding network requests) have tests
 * [ ] - No useless code
 * [ ] - Errors are handled
